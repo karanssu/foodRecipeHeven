@@ -1,8 +1,15 @@
-const { log } = require('console');
 const express = require('express');
-const path = require('path');
 const app = express();
+const cors = require("cors");
+const dbConnection = require("./config/db.config");
+
 require('dotenv').config()
+
+dbConnection();
+app.use(cors({origin: '*'}));
+app.use(express.json());
+
+app.use("/user", require('./routes/user/userSignup'))
 
 app.get('*', (req, res) => {
   res.json({messg: 'Welcome to the test'});
