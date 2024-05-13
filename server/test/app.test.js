@@ -1,10 +1,20 @@
 const request = require("supertest");
 const app = require("../app");
+const { default: mongoose } = require("mongoose");
 
-const uniqueUsername = "testUsername7";
+const uniqueUsername = "testUsername8";
 
 describe("POST/ users", () => {
 	describe("given a username, email and password", () => {
+		beforeAll((done) => {
+			done();
+		});
+
+		afterAll((done) => {
+			mongoose.connection.close();
+			done();
+		});
+
 		test("should respond with a 200 status code", async () => {
 			const res = await request(app).post("/user/signup").send({
 				username: uniqueUsername,
