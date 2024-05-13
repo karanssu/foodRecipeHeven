@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const z = require("zod");
 const bcrypt = require("bcrypt");
-const { userSignupValidator } = require("../../models/userValidator");
+const { userSignupValidation } = require("../../models/userValidator");
 const newUserModel = require("../../models/userModel");
 
 router.post("/signup", async (req, res) => {
-    const { error } = userSignupValidator(req.body);
+    const { error } = userSignupValidation(req.body);
     console.log(error);
     if (error)
         return res.status(400).send({ message: error.errors[0].message });
