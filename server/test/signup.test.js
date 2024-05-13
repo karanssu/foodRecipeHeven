@@ -1,8 +1,11 @@
 const request = require("supertest");
-const app = require("../app");
-const { default: mongoose } = require("mongoose");
+const makeApp = require("../app");
+require("dotenv").config();
 
-const uniqueUsername = "testUsername8";
+const app = makeApp(process.env.TEST_DB_URL);
+const { mongoose } = require("mongoose");
+
+const uniqueUsername = "testUsername9";
 
 describe("POST/ users", () => {
 	describe("given a username, email and password", () => {
