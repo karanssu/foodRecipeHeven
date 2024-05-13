@@ -7,3 +7,7 @@ Content-Type: application/json
     "email": "testtest@gmail.com",
     "password": "Testtest1$"
 }
+
+###
+GET http://localhost:4000/user/
+Content-Type: application/json

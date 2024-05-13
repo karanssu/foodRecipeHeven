@@ -10,6 +10,7 @@ app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // user routes
+app.use("/user", require("./routes/user/users"));
 app.use("/user", require("./routes/user/userSignup"));
 
 const PORT = process.env.PORT || 5000;
