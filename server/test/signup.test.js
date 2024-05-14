@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = makeApp(process.env.TEST_DB_URL);
 const { mongoose } = require("mongoose");
 
-const uniqueUsername = "testUsername9";
+const uniqueUsername = "testUsername12";
 
 describe("POST/ users", () => {
 	describe("given a username, email and password", () => {
