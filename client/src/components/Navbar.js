@@ -13,7 +13,7 @@ import logoImg from "../images/logo.png";
 import profileImg from "../images/profile.png";
 
 const NavBar = () => {
-	const user = null;
+	const user = "asdfl";
 
 	return (
 		<Navbar variant="dark" expand="lg" className="navbar">
@@ -54,28 +54,32 @@ const NavBar = () => {
 						{/* </NavDropdown> */}
 					</Nav>
 					<Nav className="me-right">
-						<Button
-							className="nav-btn login-btn mx-md-2 flex-row-reverse"
-							variant="outline-light"
-							as={Link}
-							to="/login"
-						>
-							Login
-						</Button>
-						<Button
-							className="nav-btn signup-btn my-3 my-md-0 mt-1 mt-md-0 flex-row-reverse"
-							variant="outline-light"
-							as={Link}
-							to="/signup"
-						>
-							Sign Up
-						</Button>
+						{!user && (
+							<Button
+								className="nav-btn login-btn mx-md-2 flex-row-reverse"
+								variant="outline-light"
+								as={Link}
+								to="/login"
+							>
+								Login
+							</Button>
+						)}
+						{!user && (
+							<Button
+								className="nav-btn signup-btn my-3 my-md-0 mt-1 mt-md-0 flex-row-reverse"
+								variant="outline-light"
+								as={Link}
+								to="/signup"
+							>
+								Sign Up
+							</Button>
+						)}
 						{user && (
 							<Nav.Link>
 								<Image
 									src={profileImg}
-									width="30"
-									height="30"
+									width="40"
+									height="40"
 									roundedCircle
 									alt="Profile"
 								/>
