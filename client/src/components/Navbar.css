@@ -1,3 +1,4 @@
+/* Desktop styles */
 .navbar,
 .navbar-container {
 	padding: 0;
@@ -45,8 +46,14 @@
 	box-shadow: none;
 }
 
+/* Mobile styles */
 @media (max-width: 991px) {
 	.signup-btn {
 		background-color: transparent;
+	}
+
+	.signup-btn:focus,
+	.login-btn:focus {
+		border-color: transparent;
 	}
 }
