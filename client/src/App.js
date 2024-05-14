@@ -23,7 +23,12 @@ function App() {
 		fetchData();
 	}, []);
 
-	return <>{users}</>;
+	return (
+		<>
+			<button>Test</button>
+			{users}
+		</>
+	);
 }
 
 export default App;
