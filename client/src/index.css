@@ -1,6 +1,6 @@
 :root {
 	--main-color: #1aeb54;
-  --btn-background-color: white;
+	--btn-background-color: white;
 	--text-font: "Montserrat";
 	--btn-font: "Poppins";
 	--btn-font-color: "black";
@@ -10,6 +10,7 @@
 
 body {
 	margin: 0;
+	padding: 0;
 	font-family: var(--text-font);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

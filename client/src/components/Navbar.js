@@ -28,7 +28,10 @@ const NavBar = () => {
 						style={{ margin: 0 }}
 					/>
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Toggle
+					className="navbar-toogle-btn"
+					aria-controls="basic-navbar-nav"
+				/>
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
 						{/* <Nav.Link as={Link} to="/home">
@@ -60,7 +63,7 @@ const NavBar = () => {
 							Login
 						</Button>
 						<Button
-							className="nav-btn signup-btn"
+							className="nav-btn signup-btn my-sm-3"
 							variant="outline-light"
 							as={Link}
 							to="/signup"

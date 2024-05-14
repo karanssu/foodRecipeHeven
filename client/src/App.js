@@ -29,7 +29,6 @@ const App = () => {
 	return (
 		<>
 			<Navbar />
-			<div>{users}</div>
 		</>
 	);
 };
