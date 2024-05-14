@@ -4,6 +4,10 @@
 	background-color: var(--main-color);
 }
 
+.logo-container {
+	margin: 0px 20px;
+}
+
 .btn {
 	color: var(--btn-font-color);
 	font-weight: bold;
@@ -18,18 +22,17 @@
 }
 
 .signup-btn:hover {
-	background-color: var(--main-color);
+	background-color: transparent;
 }
 
 .login-btn {
 	background-color: none;
 	border: 2px transparent solid;
-	margin-right: 8px;
 }
 
 .login-btn:hover {
 	border-color: var(--btn-background-color);
-	background-color: var(--main-color);
+	background-color: transparent;
 }
 
 .login-btn:active {
@@ -40,4 +43,10 @@
 .btn:focus,
 .navbar-toogle-btn:focus {
 	box-shadow: none;
+}
+
+@media (max-width: 991px) {
+	.signup-btn {
+		background-color: transparent;
+	}
 }

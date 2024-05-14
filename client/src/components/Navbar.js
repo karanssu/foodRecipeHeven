@@ -18,7 +18,7 @@ const NavBar = () => {
 	return (
 		<Navbar variant="dark" expand="lg" className="navbar">
 			<Container className="navbar-container">
-				<Navbar.Brand as={Link} to="/">
+				<Navbar.Brand className="mx-3 mx-md-0" as={Link} to="/">
 					<img
 						src={logoImg}
 						width="50"
@@ -55,7 +55,7 @@ const NavBar = () => {
 					</Nav>
 					<Nav className="me-right">
 						<Button
-							className="nav-btn login-btn"
+							className="nav-btn login-btn mx-md-2 flex-row-reverse"
 							variant="outline-light"
 							as={Link}
 							to="/login"
@@ -63,7 +63,7 @@ const NavBar = () => {
 							Login
 						</Button>
 						<Button
-							className="nav-btn signup-btn my-sm-3 my-md-0"
+							className="nav-btn signup-btn my-3 my-md-0 mt-1 mt-md-0 flex-row-reverse"
 							variant="outline-light"
 							as={Link}
 							to="/signup"
