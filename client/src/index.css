@@ -1,14 +1,16 @@
+:root {
+	--main-color: #1aeb54;
+  --btn-background-color: white;
+	--text-font: "Montserrat";
+	--btn-font: "Poppins";
+	--btn-font-color: "black";
+	--title-font: "Poppins";
+	--tag-font: "Poppins";
+}
+
 body {
-  margin: 0;
-  font-family: 'Montserrat';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.text-font {
-  font-family: 'Montserrat';
-}
-
-.title-font {
-  font-family: 'Poppins';
+	margin: 0;
+	font-family: var(--text-font);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

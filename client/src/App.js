@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import Navbar from "./components/Navbar";
 
 const URL = "http://localhost:4000/user/";
 
-function App() {
+const App = () => {
 	const [users, setUser] = useState("");
 
 	const fetchData = async () => {
@@ -25,10 +28,10 @@ function App() {
 
 	return (
 		<>
-			<button>Test</button>
-			{users}
+			<Navbar />
+			<div>{users}</div>
 		</>
 	);
-}
+};
 
 export default App;
