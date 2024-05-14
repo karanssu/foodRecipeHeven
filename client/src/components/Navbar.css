@@ -37,6 +37,7 @@
 	border-color: transparent;
 }
 
-.btn:focus {
+.btn:focus,
+.navbar-toogle-btn:focus {
 	box-shadow: none;
 }

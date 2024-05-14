@@ -63,7 +63,7 @@ const NavBar = () => {
 							Login
 						</Button>
 						<Button
-							className="nav-btn signup-btn my-sm-3"
+							className="nav-btn signup-btn my-sm-3 my-md-0"
 							variant="outline-light"
 							as={Link}
 							to="/signup"
