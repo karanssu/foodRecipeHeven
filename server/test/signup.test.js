@@ -5,8 +5,6 @@ require("dotenv").config();
 const app = makeApp(process.env.TEST_DB_URL);
 const { mongoose } = require("mongoose");
 
-const uniqueUsername = "testUsername12";
-
 describe("POST/ users", () => {
 	describe("given a username, email and password", () => {
 		beforeAll((done) => {
@@ -20,7 +18,7 @@ describe("POST/ users", () => {
 
 		test("should respond with a 200 status code", async () => {
 			const res = await request(app).post("/user/signup").send({
-				username: uniqueUsername,
+				username: "testtest",
 				email: "test@gmail.com",
 				password: "TestPass$10",
 			});
@@ -40,7 +38,7 @@ describe("POST/ users", () => {
 
 		test("should specify json in the content type header", async () => {
 			const res = await request(app).post("/user/signup").send({
-				username: uniqueUsername,
+				username: "testtest",
 				email: "test@gmail.com",
 				password: "TestPass$10",
 			});
