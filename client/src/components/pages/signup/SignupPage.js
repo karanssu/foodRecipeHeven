@@ -13,7 +13,7 @@ const SignupPage = () => {
 
 	return (
 		<div className="container mt-5 ">
-			<div className="row justify-content-center mx-3 mx-md-0">
+			<div className="row justify-content-center mx-3 mx-md-5">
 				<div className="col-md-8">
 					<div className="signup-form">
 						<div className="create-account-title mb-5">
