@@ -1,0 +1,70 @@
+.create-account-title {
+	text-align: center;
+}
+
+.form-error {
+	height: 30px;
+}
+
+.form-signup-btn {
+	background-color: var(--main-color);
+	width: 100%;
+	justify-content: center;
+}
+
+.form-signup-btn:hover {
+	background-color: #15cc45;
+}
+
+.form-signup-btn:focus {
+	outline: none;
+	background-color: var(--main-color);
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.form-signup-btn:active {
+	background-color: var(--main-color);
+	box-shadow: none;
+}
+
+.form-google-signup-btn {
+	background-color: white;
+	width: 100%;
+	justify-content: center;
+	border: 1px solid #757373;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.form-google-signup-btn:hover {
+	background-color: #f8f8f8;
+}
+
+.form-google-signup-btn:focus {
+	outline: none;
+	background-color: white;
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.form-google-signup-btn:active {
+	background-color: white;
+	box-shadow: none;
+}
+
+.signup-input:focus {
+	box-shadow: none;
+	border-color: var(--main-color);
+}
+
+.signup-input-icon-container {
+	background-color: var(--main-color);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.or-text {
+	text-align: center;
+}
