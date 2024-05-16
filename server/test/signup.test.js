@@ -1,22 +1,24 @@
 const request = require("supertest");
+const { connectDB, dropDB, dropCollections } = require("../config/setupdb");
 const makeApp = require("../app");
-require("dotenv").config();
-
-const app = makeApp(process.env.TEST_DB_URL);
-const { mongoose } = require("mongoose");
+let app;
 
 describe("POST/ users", () => {
 	describe("given a username, email and password", () => {
-		beforeAll((done) => {
-			done();
+		beforeAll(async () => {
+			const uri = await connectDB();
+			app = makeApp(uri);
 		});
 
-		afterAll((done) => {
-			mongoose.connection.close();
-			done();
+		afterAll(async () => {
+			await dropDB();
 		});
 
-		test("should respond with a 200 status code", async () => {
+		afterEach(async () => {
+			await dropCollections();
+		});
+
+		it("should respond with a 200 status code", async () => {
 			const res = await request(app).post("/user/signup").send({
 				username: "testtest",
 				email: "test@gmail.com",
@@ -26,17 +28,22 @@ describe("POST/ users", () => {
 			expect(res.statusCode).toBe(200);
 		});
 
-		test("should respond with a 409 status code when user exists", async () => {
-			const res = await request(app).post("/user/signup").send({
+		it("should respond with a 409 status code when user exists", async () => {
+			await request(app).post("/user/signup").send({
 				username: "testtest",
 				email: "test@gmail.com",
 				password: "TestPass$10",
 			});
 
+			const res = await request(app).post("/user/signup").send({
+				username: "testtest",
+				email: "test@gmail.com",
+				password: "TestPass$10",
+			});
 			expect(res.statusCode).toBe(409);
 		});
 
-		test("should specify json in the content type header", async () => {
+		it("should specify json in the content type header", async () => {
 			const res = await request(app).post("/user/signup").send({
 				username: "testtest",
 				email: "test@gmail.com",
