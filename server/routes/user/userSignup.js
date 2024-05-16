@@ -9,9 +9,13 @@ router.post("/signup", async (req, res) => {
 	if (error) return res.status(400).send({ message: error.errors[0].message });
 
 	const { username, email, password } = req.body;
-	const user = await userModel.findOne({ username: username });
-	if (user)
-		return res.status(409).send({ message: "Username is taken, pick another" });
+	const usernameExits = await userModel.findOne({ username: username });
+	if (usernameExits)
+		return res.status(409).send({ message: "Username is already taken" });
+
+	const emailExists = await userModel.findOne({ email: email });
+	if (emailExists)
+		return res.status(409).send({ message: "Email is already taken" });
 
 	const generateHash = await bcrypt.genSalt(Number(10));
 
