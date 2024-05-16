@@ -117,7 +117,7 @@ const SignupPage = () => {
 											</span>
 										</div>
 										<input
-											type="text"
+											type="password"
 											className="form-control signup-input"
 											placeholder="Password"
 											aria-label="Password"
@@ -154,7 +154,7 @@ const SignupPage = () => {
 											</span>
 										</div>
 										<input
-											type="text"
+											type="password"
 											className="form-control signup-input"
 											placeholder="Confirm Password"
 											aria-label="Confirm Password"
