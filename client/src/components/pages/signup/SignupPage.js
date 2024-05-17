@@ -8,8 +8,8 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const serverSignupUrl = process.env.PORT;
-console.log(serverSignupUrl);
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+const signupUrl = serverUrl + "/user/signup";
 
 const SignupPage = () => {
 	const [userError, setUserError] = useState("");
@@ -63,16 +63,16 @@ const SignupPage = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const username = usernameRef.current.value;
-		const email = emailRef.current.value;
-		const password = passwordRef.current.value;
-		const confirmPassword = confirmPasswordRef.current.value;
+		const username = usernameRef.current.value.trim();
+		const email = emailRef.current.value.trim();
+		const password = passwordRef.current.value.trim();
+		const confirmPassword = confirmPasswordRef.current.value.trim();
 
 		const error = handlePasswordMismatchError(password, confirmPassword);
 		if (error) return;
 
 		await axios
-			.post("http://localhost:4000/user/signup", {
+			.post(signupUrl, {
 				username,
 				email,
 				password,
