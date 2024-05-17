@@ -12,25 +12,6 @@ import LoginPage from "./components/pages/login/LoginPage.js";
 const URL = "http://localhost:4000/user/";
 
 const App = () => {
-	const [users, setUser] = useState("");
-
-	const fetchData = async () => {
-		let result = "";
-
-		try {
-			const res = await axios.get(URL);
-			result = JSON.stringify(res);
-
-			setUser(result);
-		} catch (error) {
-			console.log("Error: ", error);
-		}
-	};
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
 	return (
 		<>
 			<Navbar />
