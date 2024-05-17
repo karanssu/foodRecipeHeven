@@ -1,12 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const dbConnection = require("./config/db.config");
+require("dotenv").config();
+
+const CLIENT_URL = process.env.CLIENT_URL;
 
 const makeApp = (dbUrl) => {
 	const app = express();
 
 	dbConnection(dbUrl);
-	app.use(cors({ origin: "*" }));
+
+	const coresOptions = {
+		origin: [CLIENT_URL],
+	};
+
+	app.use(cors(coresOptions));
 	app.use(express.json());
 
 	// user routes
