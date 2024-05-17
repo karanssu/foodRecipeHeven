@@ -190,7 +190,7 @@ const SignupPage = () => {
 								</div>
 							</div>
 						</div>
-						<div className="google-signup-btn">
+						<div className="google-signup-btn mb-5">
 							<button className="btn form-google-signup-btn py-2">
 								<div>
 									<img
