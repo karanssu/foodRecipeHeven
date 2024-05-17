@@ -4,12 +4,88 @@ import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
 import confirmPasswordIcon from "../../../images/confirmPasswordIcon.png";
 import googleIcon from "../../../images/googleIcon.png";
+import { useRef, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const serverSignupUrl = process.env.PORT;
+console.log(serverSignupUrl);
 
 const SignupPage = () => {
-	const userError = "Username is required";
-	const emailError = "Email is required";
-	const passwordError = "Password is required";
-	const confirmPasswordError = "Confrim Password is required";
+	const [userError, setUserError] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+	const usernameRef = useRef("");
+	const emailRef = useRef("");
+	const passwordRef = useRef("");
+	const confirmPasswordRef = useRef("");
+
+	const navigate = useNavigate();
+
+	const handlePasswordMismatchError = (password, confirmPassword) => {
+		if (password !== confirmPassword) {
+			const errorMessage = "Passwords do not match";
+			setConfirmPasswordError(errorMessage);
+			return true;
+		}
+
+		setConfirmPasswordError("");
+		return false;
+	};
+
+	const clearErrorMessages = () => {
+		setUserError("");
+		setEmailError("");
+		setPasswordError("");
+		setConfirmPasswordError("");
+	};
+
+	const handleErrorMessage = (errorMessage) => {
+		if (!errorMessage) return;
+
+		const usernameRegex = /username/i;
+		const emailRegex = /email/i;
+		const passwordRegex = /password/i;
+
+		usernameRegex.test(errorMessage)
+			? setUserError(errorMessage)
+			: setUserError("");
+		emailRegex.test(errorMessage)
+			? setEmailError(errorMessage)
+			: setEmailError("");
+		passwordRegex.test(errorMessage)
+			? setPasswordError(errorMessage)
+			: setPasswordError("");
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const username = usernameRef.current.value;
+		const email = emailRef.current.value;
+		const password = passwordRef.current.value;
+		const confirmPassword = confirmPasswordRef.current.value;
+
+		const error = handlePasswordMismatchError(password, confirmPassword);
+		if (error) return;
+
+		await axios
+			.post("http://localhost:4000/user/signup", {
+				username,
+				email,
+				password,
+			})
+			.then((res) => {
+				const { accessToken } = res;
+				navigate("/login");
+			})
+			.catch((error) => {
+				const errorMessage = error.response.data.message;
+				handleErrorMessage(errorMessage);
+			});
+	};
 
 	return (
 		<div className="container mt-5 ">
@@ -19,7 +95,7 @@ const SignupPage = () => {
 						<div className="create-account-title mb-5">
 							<h1>Create Account</h1>
 						</div>
-						<form action="/signup" method="post">
+						<form onSubmit={handleSubmit}>
 							<div className="form-group">
 								<div className="mb-2 mb-md-3">
 									<div className="input-group">
@@ -46,6 +122,8 @@ const SignupPage = () => {
 										</div>
 										<input
 											type="text"
+											ref={usernameRef}
+											onChange={clearErrorMessages}
 											className="form-control signup-input"
 											placeholder="Username"
 											aria-label="Username"
@@ -81,6 +159,8 @@ const SignupPage = () => {
 										</div>
 										<input
 											type="text"
+											ref={emailRef}
+											onChange={clearErrorMessages}
 											className="form-control signup-input"
 											placeholder="Email"
 											aria-label="Email"
@@ -118,6 +198,8 @@ const SignupPage = () => {
 										</div>
 										<input
 											type="password"
+											ref={passwordRef}
+											onChange={clearErrorMessages}
 											className="form-control signup-input"
 											placeholder="Password"
 											aria-label="Password"
@@ -155,6 +237,8 @@ const SignupPage = () => {
 										</div>
 										<input
 											type="password"
+											ref={confirmPasswordRef}
+											onChange={clearErrorMessages}
 											className="form-control signup-input"
 											placeholder="Confirm Password"
 											aria-label="Confirm Password"
