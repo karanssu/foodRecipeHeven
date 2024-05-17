@@ -3,7 +3,8 @@
 }
 
 .form-error {
-	height: 30px;
+	min-height: 30px;
+	font-size: small;
 }
 
 .form-signup-btn {
