@@ -3,7 +3,7 @@ import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
 import { useContext, useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../Form/FormInput";
 import GoogleLoginBtn from "../../Form/GoogleLoginBtn";
 import { UserContext } from "../../../App";
@@ -120,7 +120,7 @@ const LoginPage = () => {
 						</form>
 						<div className="text-center mt-2 mt-md-3">
 							<p>
-								Don't have an account? <a href="/signup">Sign up</a>
+								Don't have an account? <Link to="/signup">Sign up</Link>
 							</p>
 						</div>
 						<div className="or-divider my-4 my-md-5">

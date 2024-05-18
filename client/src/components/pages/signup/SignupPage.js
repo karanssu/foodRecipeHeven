@@ -5,7 +5,7 @@ import passwordIcon from "../../../images/passwordIcon.png";
 import confirmPasswordIcon from "../../../images/confirmPasswordIcon.png";
 import { useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../Form/FormInput";
 import GoogleLoginBtn from "../../Form/GoogleLoginBtn";
 
@@ -155,7 +155,7 @@ const SignupPage = () => {
 						</form>
 						<div className="text-center mt-2 mt-md-3">
 							<p>
-								Already have an account? <a href="/login">Log in</a>
+								Already have an account? <Link to="/login">Log in</Link>
 							</p>
 						</div>
 						<div className="or-divider my-4 my-md-5">
