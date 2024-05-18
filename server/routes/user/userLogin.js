@@ -3,14 +3,14 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const { userLoginValidator } = require("../../models/userValidator");
 const { generateAccessToken } = require("../../utilities/TokenGenerator");
-const { userModel } = require("../../models/userModel");
+const userModel = require("../../models/userModel");
 
 router.post("/login", async (req, res) => {
 	const { error } = userLoginValidator(req.body);
 
 	if (error) return res.status(400).send({ message: error.errors[0].message });
 
-	const { email, passowrd } = req.body;
+	const { email, password } = req.body;
 	const user = await userModel.findOne({ email: email });
 
 	if (!user)
@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
 			message: "Incorrect email or password.",
 		});
 
-	const isValidPassword = await bcrypt.compare(passowrd, user.password);
+	const isValidPassword = await bcrypt.compare(password, user.password);
 
 	if (!isValidPassword)
 		return res.status(401).send({

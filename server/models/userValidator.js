@@ -68,8 +68,7 @@ const userLoginValidator = (data) => {
 			})
 			.refine((value) => !/\s/.test(value), {
 				message: "Password cannot contain spaces",
-			})
-			.trim(),
+			}),
 	});
 	return loginValidationSchema.safeParse(data);
 };
