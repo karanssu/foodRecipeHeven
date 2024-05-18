@@ -1,0 +1,20 @@
+.form-login-btn {
+	background-color: var(--main-color);
+	width: 100%;
+	justify-content: center;
+}
+
+.form-login-btn:hover {
+	background-color: #15cc45;
+}
+
+.form-login-btn:focus {
+	outline: none;
+	background-color: var(--main-color);
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.form-login-btn:active {
+	background-color: var(--main-color);
+	box-shadow: none;
+}

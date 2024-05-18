@@ -3,7 +3,6 @@ import userIcon from "../../../images/userIcon.png";
 import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
 import confirmPasswordIcon from "../../../images/confirmPasswordIcon.png";
-import googleIcon from "../../../images/googleIcon.png";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -156,7 +155,7 @@ const SignupPage = () => {
 						</form>
 						<div className="text-center mt-2 mt-md-3">
 							<p>
-								Already have an account? <a href="/login">Sign in</a>
+								Already have an account? <a href="/login">Log in</a>
 							</p>
 						</div>
 						<div className="or-divider my-4 my-md-5">
