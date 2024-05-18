@@ -20,6 +20,7 @@ const makeApp = (dbUrl) => {
 	// user routes
 	app.use("/user", require("./routes/user/users"));
 	app.use("/user", require("./routes/user/userSignup"));
+	app.use("/user", require("./routes/user/userLogin"));
 
 	return app;
 };
