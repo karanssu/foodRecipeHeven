@@ -10,7 +10,10 @@ router.post("/login", async (req, res) => {
 
 	if (error) return res.status(400).send({ message: error.errors[0].message });
 
-	const { email, password } = req.body;
+	let { email, password } = req.body;
+	email = email ? email.trim().toLowerCase() : email;
+	password = password ? password.trim() : password;
+
 	const user = await userModel.findOne({ email: email });
 
 	if (!user)

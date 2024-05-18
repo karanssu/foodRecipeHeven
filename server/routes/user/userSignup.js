@@ -8,7 +8,11 @@ router.post("/signup", async (req, res) => {
 	const { error } = userSignupValidator(req.body);
 	if (error) return res.status(400).send({ message: error.errors[0].message });
 
-	const { username, email, password } = req.body;
+	let { username, email, password } = req.body;
+	username = username ? username.trim() : username;
+	email = email ? email.trim().toLowerCase() : email;
+	password = password ? password.trim() : password;
+
 	const usernameExits = await userModel.findOne({ username: username });
 	if (usernameExits)
 		return res.status(409).send({ message: "Username is already taken" });

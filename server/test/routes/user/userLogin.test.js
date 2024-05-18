@@ -214,7 +214,51 @@ describe("POST/ user/login", () => {
 
 			const res = await request(app).post("/user/login").send({
 				email: email,
-				password: password,
+				password,
+			});
+
+			expect(res.statusCode).toBe(200);
+			expect(res.body.message).not.toBe("Incorrect email or password");
+			expect(res.body.accessToken).toBeTruthy();
+		});
+
+		it("email must be case insensitive", async () => {
+			const username = "testtest";
+			const lowercaseEmail = "test@gmail.com";
+			const uppercaseEmail = "TEST@GMAIL.COM";
+			const password = "Test123$";
+
+			await request(app).post("/user/signup").send({
+				username,
+				email: lowercaseEmail,
+				password,
+			});
+
+			const res = await request(app).post("/user/login").send({
+				email: uppercaseEmail,
+				password,
+			});
+
+			expect(res.statusCode).toBe(200);
+			expect(res.body.message).not.toBe("Incorrect email or password");
+			expect(res.body.accessToken).toBeTruthy();
+		});
+
+		it("password must ignore blank space before and after password", async () => {
+			const username = "testtest";
+			const email = "test@gmail.com";
+			const signupPassword = "      Test123$         ";
+			const loginPassword = "  Test123$ ";
+
+			await request(app).post("/user/signup").send({
+				username,
+				email,
+				password: signupPassword,
+			});
+
+			const res = await request(app).post("/user/login").send({
+				email,
+				password: loginPassword,
 			});
 
 			expect(res.statusCode).toBe(200);
