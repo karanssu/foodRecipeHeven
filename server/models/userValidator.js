@@ -55,13 +55,23 @@ const userSignupValidator = (data) => {
 
 const userLoginValidator = (data) => {
 	const loginValidationSchema = z.object({
-		email: z.string().email({ message: "Invalid email format" }).max(255, {
-			message: "Email is too long, cannot be longer than 255 characters",
-		}),
+		email: z
+			.string({
+				required_error: "Email is required",
+			})
+			.email({ message: "Invalid email" })
+			.max(255, {
+				message: "Email must be less than 255 characters long",
+			}),
 		password: z
-			.string()
+			.string({
+				required_error: "Password is required",
+			})
+			.trim()
 			.min(8, { message: "Password must be at least 8 characters long" })
-			.max(100, { message: "Password cannot be longer than 100 characters" })
+			.max(100, {
+				message: "Password must be less than 100 characters long",
+			})
 			.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/, {
 				message:
 					"Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character",
