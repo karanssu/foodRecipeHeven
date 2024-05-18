@@ -1,16 +1,20 @@
 import "./LoginPage.css";
 import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../Form/FormInput";
 import GoogleLoginBtn from "../../Form/GoogleLoginBtn";
+import { UserContext } from "../../../App";
+import { getUser, registerUser } from "../../../utilities/userTokenManager";
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 const loginUrl = serverUrl + "/user/login";
 
 const LoginPage = () => {
+	const [user, setUser] = useContext(UserContext);
+
 	const [error, setError] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
@@ -60,6 +64,8 @@ const LoginPage = () => {
 			})
 			.then((res) => {
 				const { accessToken } = res;
+				registerUser(accessToken);
+				setUser(getUser());
 				navigate("/");
 			})
 			.catch((error) => {
