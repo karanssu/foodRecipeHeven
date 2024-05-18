@@ -1,7 +1,11 @@
 const request = require("supertest");
-const { connectDB, dropDB, dropCollections } = require("../config/setupdb");
-const makeApp = require("../app");
-const User = require("../models/userModel");
+const {
+	connectDB,
+	dropDB,
+	dropCollections,
+} = require("../../../config/setupdb");
+const makeApp = require("../../../app");
+const User = require("../../../models/userModel");
 let app;
 
 describe("POST/ user/signup", () => {
