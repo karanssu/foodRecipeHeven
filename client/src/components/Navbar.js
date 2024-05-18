@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
 	Navbar,
@@ -11,9 +11,12 @@ import {
 import "./Navbar.css";
 import logoImg from "../images/logo.png";
 import profileImg from "../images/profile.png";
+import { UserContext } from "../App";
 
 const NavBar = () => {
-	const user = null;
+	const [user, setUser] = useContext(UserContext);
+	console.log(user);
+	// const user = null;
 
 	return (
 		<Navbar variant="dark" expand="lg" className="navbar">

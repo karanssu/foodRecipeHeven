@@ -6,7 +6,7 @@ import HomePage from "./components/pages/homepage/HomePage.js";
 import SignupPage from "./components/pages/signup/SignupPage.js";
 import LoginPage from "./components/pages/login/LoginPage.js";
 import { createContext, useEffect, useState } from "react";
-import getUser from "./utilities/userTokenManager.js";
+import { getUser } from "./utilities/userTokenManager.js";
 
 export const UserContext = createContext();
 
