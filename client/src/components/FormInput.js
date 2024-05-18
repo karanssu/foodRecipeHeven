@@ -5,7 +5,7 @@ const FormInput = ({
 	type,
 	icon,
 	placeholder,
-	ref,
+	inputRef,
 	handleChange,
 	errorMessage,
 }) => {
@@ -35,7 +35,7 @@ const FormInput = ({
 				</div>
 				<input
 					type={type}
-					ref={ref}
+					ref={inputRef}
 					onChange={handleChange}
 					className="form-control form-input"
 					placeholder={placeholder}

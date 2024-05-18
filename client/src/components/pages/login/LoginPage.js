@@ -1,5 +1,12 @@
+import FormInput from "../../FormInput";
+
 const LoginPage = () => {
-	return <>Log in</>;
+	return (
+		<>
+			<div>Login</div>
+			<FormInput />
+		</>
+	);
 };
 
 export default LoginPage;

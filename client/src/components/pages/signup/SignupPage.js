@@ -7,6 +7,7 @@ import googleIcon from "../../../images/googleIcon.png";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import FormInput from "../../FormInput";
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 const signupUrl = serverUrl + "/user/signup";
@@ -98,156 +99,54 @@ const SignupPage = () => {
 						<form onSubmit={handleSubmit}>
 							<div className="form-group">
 								<div className="mb-2 mb-md-3">
-									<div className="input-group">
-										<div className="input-group-prepend">
-											<span
-												className="input-group-text signup-input-icon-container "
-												id="basic-addon1"
-											>
-												<div
-													style={{
-														width: "25px",
-														height: "25px",
-													}}
-													className="d-flex align-items-center justify-content-center"
-												>
-													<img
-														src={userIcon}
-														alt="User Icon"
-														width="20"
-														height="20"
-													/>
-												</div>
-											</span>
-										</div>
-										<input
-											type="text"
-											ref={usernameRef}
-											onChange={clearErrorMessages}
-											className="form-control signup-input"
-											placeholder="Username"
-											aria-label="Username"
-											aria-describedby="basic-addon1"
-										/>
-									</div>
-									<div className="form-error text-danger mt-1">{userError}</div>
+									<FormInput
+										id={1}
+										type="text"
+										icon={userIcon}
+										placeholder="Username"
+										inputRef={usernameRef}
+										handleChange={clearErrorMessages}
+										errorMessage={userError}
+									/>
 								</div>
 							</div>
 							<div className="form-group">
 								<div className="mb-2 mb-md-3">
-									<div className="input-group">
-										<div className="input-group-prepend">
-											<span
-												className="input-group-text signup-input-icon-container"
-												id="basic-addon2"
-											>
-												<div
-													style={{
-														width: "25px",
-														height: "25px",
-													}}
-													className="d-flex align-items-center justify-content-center"
-												>
-													<img
-														src={emailIcon}
-														alt="Email Icon"
-														width="20"
-														height="20"
-													/>
-												</div>
-											</span>
-										</div>
-										<input
-											type="text"
-											ref={emailRef}
-											onChange={clearErrorMessages}
-											className="form-control signup-input"
-											placeholder="Email"
-											aria-label="Email"
-											aria-describedby="basic-addon2"
-										/>
-									</div>
-									<div className="form-error text-danger mt-1">
-										{emailError}
-									</div>
+									<FormInput
+										id={2}
+										type="text"
+										icon={emailIcon}
+										placeholder="Email"
+										inputRef={emailRef}
+										handleChange={clearErrorMessages}
+										errorMessage={emailError}
+									/>
 								</div>
 							</div>
 							<div className="form-group">
 								<div className="mb-2 mb-md-3">
-									<div className="input-group">
-										<div className="input-group-prepend">
-											<span
-												className="input-group-text signup-input-icon-container"
-												id="basic-addon3"
-											>
-												<div
-													style={{
-														width: "25px",
-														height: "25px",
-													}}
-													className="d-flex align-items-center justify-content-center"
-												>
-													<img
-														src={passwordIcon}
-														alt="Password Icon"
-														width="20"
-														height="20"
-													/>
-												</div>
-											</span>
-										</div>
-										<input
-											type="password"
-											ref={passwordRef}
-											onChange={clearErrorMessages}
-											className="form-control signup-input"
-											placeholder="Password"
-											aria-label="Password"
-											aria-describedby="basic-addon3"
-										/>
-									</div>
-									<div className="form-error text-danger mt-1">
-										{passwordError}
-									</div>
+									<FormInput
+										id={3}
+										type="password"
+										icon={passwordIcon}
+										placeholder="Password"
+										inputRef={passwordRef}
+										handleChange={clearErrorMessages}
+										errorMessage={passwordError}
+									/>
 								</div>
 							</div>
 							<div className="form-group">
 								<div className="mb-3 mb-md-4">
-									<div className="input-group">
-										<div className="input-group-prepend">
-											<span
-												className="input-group-text signup-input-icon-container"
-												id="basic-addon4"
-											>
-												<div
-													style={{
-														width: "25px",
-														height: "25px",
-													}}
-													className="d-flex align-items-center justify-content-center"
-												>
-													<img
-														src={confirmPasswordIcon}
-														alt="Confirm Password Icon"
-														width="20"
-														height="20"
-													/>
-												</div>
-											</span>
-										</div>
-										<input
-											type="password"
-											ref={confirmPasswordRef}
-											onChange={clearErrorMessages}
-											className="form-control signup-input"
-											placeholder="Confirm Password"
-											aria-label="Confirm Password"
-											aria-describedby="basic-addon4"
-										/>
-									</div>
-									<div className="form-error text-danger mt-1">
-										{confirmPasswordError}
-									</div>
+									<FormInput
+										id={4}
+										type="password"
+										icon={confirmPasswordIcon}
+										placeholder="Confirm Password"
+										inputRef={confirmPasswordRef}
+										handleChange={clearErrorMessages}
+										errorMessage={confirmPasswordError}
+									/>
 								</div>
 							</div>
 							<button type="submit" className="btn form-signup-btn py-md-2">
