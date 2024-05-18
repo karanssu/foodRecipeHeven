@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../Form/FormInput";
+import GoogleLoginBtn from "../../Form/GoogleLoginBtn";
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 const signupUrl = serverUrl + "/user/signup";
@@ -174,18 +175,7 @@ const SignupPage = () => {
 							</div>
 						</div>
 						<div className="google-signup-btn mb-5">
-							<button className="btn form-google-signup-btn py-2">
-								<div>
-									<img
-										src={googleIcon}
-										alt="Google Sign Up Icon"
-										width="20"
-										height="20"
-										className="mx-3 "
-									/>
-									<span>Sign up with Google</span>
-								</div>
-							</button>
+							<GoogleLoginBtn />
 						</div>
 					</div>
 				</div>
