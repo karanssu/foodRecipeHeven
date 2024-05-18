@@ -159,7 +159,7 @@ const SignupPage = () => {
 								Already have an account? <a href="/login">Sign in</a>
 							</p>
 						</div>
-						<div className="or-divider mb-3 mb-md-4">
+						<div className="or-divider my-4 my-md-5">
 							<div className="container">
 								<div className="row">
 									<div className="col-5">
