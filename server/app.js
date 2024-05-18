@@ -14,7 +14,7 @@ const makeApp = (dbUrl) => {
 		origin: [CLIENT_URL],
 	};
 
-	app.use(cors("*"));
+	app.use(cors(coresOptions));
 	app.use(express.json());
 
 	// user routes
