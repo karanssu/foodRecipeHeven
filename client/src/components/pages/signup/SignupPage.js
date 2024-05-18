@@ -7,7 +7,7 @@ import googleIcon from "../../../images/googleIcon.png";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import FormInput from "../../FormInput";
+import FormInput from "../../Form/FormInput";
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 const signupUrl = serverUrl + "/user/signup";
@@ -178,7 +178,7 @@ const SignupPage = () => {
 								<div>
 									<img
 										src={googleIcon}
-										alt="Confirm Password Icon"
+										alt="Google Sign Up Icon"
 										width="20"
 										height="20"
 										className="mx-3 "
