@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	Navbar,
 	Nav,
@@ -12,11 +12,17 @@ import "./Navbar.css";
 import logoImg from "../images/logo.png";
 import profileImg from "../images/profile.png";
 import { UserContext } from "../App";
+import { removeUser } from "../utilities/userTokenManager";
 
 const NavBar = () => {
 	const [user, setUser] = useContext(UserContext);
-	console.log(user);
-	// const user = null;
+	const navigate = useNavigate();
+
+	const logout = () => {
+		removeUser();
+		setUser(null);
+		navigate("/");
+	};
 
 	return (
 		<Navbar variant="dark" expand="lg" className="navbar">
@@ -40,6 +46,7 @@ const NavBar = () => {
 								height="40"
 								roundedCircle
 								alt="Profile"
+								onClick={logout}
 							/>
 						</Nav.Link>
 					</Nav>

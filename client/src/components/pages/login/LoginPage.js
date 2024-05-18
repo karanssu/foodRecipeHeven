@@ -63,7 +63,7 @@ const LoginPage = () => {
 				password,
 			})
 			.then((res) => {
-				const { accessToken } = res;
+				const accessToken = res.data.accessToken;
 				registerUser(accessToken);
 				setUser(getUser());
 				navigate("/");
