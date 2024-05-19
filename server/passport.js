@@ -1,5 +1,7 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
+const userModel = require("./models/userModel");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 passport.use(
@@ -10,10 +12,46 @@ passport.use(
 			callbackURL: "/google/auth/google/callback",
 			scope: ["profile", "email"],
 		},
-		function (accessToken, refreshToken, profile, callback) {
-			// save user in databse here
-			console.log(profile);
-			callback(null, profile);
+		async (accessToken, refreshToken, profile, callback) => {
+			const firstName = profile.name.givenName.trim().toLowerCase();
+			const lastName = profile.name.familyName.trim().toLowerCase();
+			const email = profile.emails[0].value;
+			const password = profile.id;
+			let user = await userModel.findOne({ email: email });
+
+			try {
+				if (user) {
+					const isValidPassword = await bcrypt.compare(password, user.password);
+
+					if (!isValidPassword) {
+						callback("Password mismatched", false);
+					}
+
+					callback(null, user);
+				} else {
+					const uniuqeNum = new Date().valueOf();
+					const username = firstName + lastName + uniuqeNum;
+					const generateHash = await bcrypt.genSalt(Number(10));
+					const hashPassword = await bcrypt.hash(password, generateHash);
+
+					user = new userModel({
+						username: username,
+						email: email,
+						password: hashPassword,
+					});
+
+					try {
+						await user.save();
+						callback(null, user);
+					} catch (error) {
+						console.error(error);
+						callback(error, false);
+					}
+				}
+			} catch (error) {
+				console.error(error);
+				callback(error, false);
+			}
 		}
 	)
 );

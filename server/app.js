@@ -8,6 +8,7 @@ const dbConnection = require("./config/db.config");
 require("dotenv").config();
 
 const CLIENT_URL = process.env.CLIENT_URL;
+const SERVER_URL = process.env.SERVER_URL;
 
 const makeApp = (dbUrl) => {
 	const app = express();
@@ -15,7 +16,7 @@ const makeApp = (dbUrl) => {
 	dbConnection(dbUrl);
 
 	const coresOptions = {
-		origin: [CLIENT_URL],
+		origin: [CLIENT_URL, SERVER_URL],
 		methods: "GET,POST,PUT,DELETE",
 		credentials: true,
 	};

@@ -13,8 +13,26 @@ export const UserContext = createContext();
 const App = () => {
 	const [user, setUser] = useState(null);
 
+	const fetchUser = () => {
+		fetch(`${process.env.REACT_APP_SERVER_URL}/google/auth/login/success`, {
+			method: "GET",
+			credentials: "include",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Credentials": true,
+			},
+		})
+			.then((res) => {
+				if (res.status === 200) return res.json();
+				else setUser(getUser());
+			})
+			.then((resObj) => setUser(resObj.user))
+			.catch((error) => console.error(error));
+	};
+
 	useEffect(() => {
-		setUser(getUser());
+		fetchUser();
 	}, []);
 
 	return (

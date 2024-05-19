@@ -15,6 +15,23 @@ export const getUser = () => {
 	}
 };
 
+const removeGoogleUser = () => {
+	fetch(`${process.env.REACT_APP_SERVER_URL}/google/auth/logout`, {
+		method: "GET",
+		credentials: "include",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Credentials": true,
+		},
+	})
+		.then((res) => {
+			if (res.status !== 200) throw new Error("Google User logout failed!");
+		})
+		.catch((error) => console.error(error));
+};
+
 export const removeUser = () => {
 	localStorage.removeItem("accessToken");
+	removeGoogleUser();
 };
