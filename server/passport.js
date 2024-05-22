@@ -17,39 +17,22 @@ passport.use(
 			const lastName = profile.name.familyName.trim().toLowerCase();
 			const email = profile.emails[0].value;
 			const password = profile.id;
-			let user = await userModel.findOne({ email: email });
 
 			try {
-				if (user) {
-					const isValidPassword = await bcrypt.compare(password, user.password);
+				let user = await userModel.findOne({ email: email });
 
-					if (!isValidPassword) {
-						callback("Password mismatched", false);
-					}
-
-					callback(null, user);
-				} else {
+				if (!user) {
 					const uniuqeNum = new Date().valueOf();
 					const username = firstName + lastName + uniuqeNum;
 					const generateHash = await bcrypt.genSalt(Number(10));
 					const hashPassword = await bcrypt.hash(password, generateHash);
 
-					user = new userModel({
-						username: username,
-						email: email,
-						password: hashPassword,
-					});
-
-					try {
-						await user.save();
-						callback(null, user);
-					} catch (error) {
-						console.error(error);
-						callback(error, false);
-					}
+					user = new userModel({ username, email, password: hashPassword });
+					await user.save();
 				}
+
+				callback(null, user);
 			} catch (error) {
-				console.error(error);
 				callback(error, false);
 			}
 		}
