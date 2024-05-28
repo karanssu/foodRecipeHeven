@@ -22,11 +22,10 @@ describe("POST/ user/login", () => {
 			await dropCollections();
 		});
 
-		it("should respond with a 400 status code when missing email", async () => {
-			const res = await request(app).post("/user/login").send({});
+		it("should respond with a 200", async () => {
+			const res = await request(app).get("/food/preview");
 
-			expect(res.statusCode).toBe(400);
-			expect(res.body.message).toBe("Email is required");
+			expect(res.statusCode).toBe(200);
 		});
 	});
 });

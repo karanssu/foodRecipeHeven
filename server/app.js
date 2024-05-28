@@ -40,6 +40,9 @@ const makeApp = (dbUrl) => {
 	app.use("/user", require("./routes/user/userSignup"));
 	app.use("/user", require("./routes/user/userLogin"));
 
+	// food preview routes
+	app.use("/food", require("./routes/food/preview/foodPreview"));
+
 	return app;
 };
 
