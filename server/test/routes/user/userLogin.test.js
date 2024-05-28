@@ -5,7 +5,6 @@ const {
 	dropCollections,
 } = require("../../../config/setupdb");
 const makeApp = require("../../../app");
-const User = require("../../../models/userModel");
 let app;
 
 describe("POST/ user/login", () => {
